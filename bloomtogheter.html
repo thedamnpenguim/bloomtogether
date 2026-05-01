@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom Together — For Mothers of Autistic Children</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FDF6EE;
+    --warm: #F5E6D3;
+    --peach: #E8A87C;
+    --terracotta: #C9674A;
+    --sage: #7A9E7E;
+    --sage-light: #B5CEAB;
+    --lavender: #C5B8D6;
+    --dark: #2C2416;
+    --mid: #6B5C4A;
+    --light-text: #9C8B78;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 20px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(253,246,238,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,180,160,0.2);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--terracotta);
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--mid);
+    font-size: 0.88rem; font-weight: 400;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--terracotta); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 48px 80px; gap: 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(197,184,214,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -80px; left: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(181,206,171,0.25) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-text { position: relative; z-index: 2; }
+  .hero-tag {
+    display: inline-block;
+    background: var(--sage-light); color: var(--dark);
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 6px 16px; border-radius: 40px; margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.15; color: var(--dark); margin-bottom: 24px;
+  }
+  .hero h1 em { font-style: italic; color: var(--terracotta); }
+  .hero p {
+    font-size: 1.1rem; line-height: 1.8;
+    color: var(--mid); max-width: 480px; margin-bottom: 40px;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--terracotta); color: white;
+    padding: 16px 32px; border-radius: 50px;
+    text-decoration: none; font-weight: 500;
+    font-size: 0.95rem; letter-spacing: 0.02em;
+    transition: all 0.3s; box-shadow: 0 8px 30px rgba(201,103,74,0.3);
+  }
+  .hero-cta:hover {
+    background: var(--dark);
+    box-shadow: 0 12px 40px rgba(44,36,22,0.2);
+    transform: translateY(-2px);
+  }
+  .hero-visual {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-card-stack { position: relative; width: 320px; height: 380px; }
+  .hero-card {
+    position: absolute; background: white;
+    border-radius: 24px; padding: 28px;
+    box-shadow: 0 20px 60px rgba(44,36,22,0.08);
+  }
+  .hero-card-1 {
+    width: 280px; top: 0; left: 20px;
+    transform: rotate(-3deg);
+    background: linear-gradient(135deg, #FFF5EE, #FFE8D6);
+  }
+  .hero-card-2 {
+    width: 260px; bottom: 0; right: 10px;
+    transform: rotate(2deg);
+    background: linear-gradient(135deg, #EEF4EE, #DCF0DC);
+  }
+  .hero-card-3 {
+    width: 240px; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: white; z-index: 3;
+  }
+  .card-emoji { font-size: 2rem; margin-bottom: 12px; display: block; }
+  .card-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--dark); margin-bottom: 6px; }
+  .card-text { font-size: 0.82rem; color: var(--mid); line-height: 1.5; }
+
+  /* SECTIONS */
+  section { padding: 100px 48px; }
+  .section-tag {
+    display: inline-block; font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    line-height: 1.2; color: var(--dark);
+    margin-bottom: 20px; max-width: 600px;
+  }
+  .section-sub {
+    font-size: 1rem; color: var(--mid);
+    line-height: 1.8; max-width: 560px; margin-bottom: 60px;
+  }
+
+  /* UNDERSTANDING AUTISM */
+  .autism-section { background: var(--warm); }
+  .autism-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 60px; }
+  .autism-card {
+    background: white; border-radius: 20px; padding: 32px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .autism-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(44,36,22,0.1); }
+  .autism-card .icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin-bottom: 20px;
+  }
+  .icon-orange { background: rgba(232,168,124,0.2); }
+  .icon-green  { background: rgba(122,158,126,0.2); }
+  .icon-purple { background: rgba(197,184,214,0.3); }
+  .icon-pink   { background: rgba(240,180,180,0.2); }
+  .icon-blue   { background: rgba(140,180,220,0.2); }
+  .icon-yellow { background: rgba(240,210,100,0.2); }
+  .autism-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--dark); margin-bottom: 10px; }
+  .autism-card p { font-size: 0.9rem; color: var(--mid); line-height: 1.7; }
+
+  /* TIPS */
+  .tips-section { background: var(--cream); }
+  .tips-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 60px; }
+  .tips-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+  .tip-item {
+    background: white; border-radius: 20px; padding: 28px;
+    display: flex; gap: 20px; align-items: flex-start;
+    border-left: 4px solid transparent; transition: all 0.3s;
+  }
+  .tip-item:nth-child(1) { border-color: var(--terracotta); }
+  .tip-item:nth-child(2) { border-color: var(--sage); }
+  .tip-item:nth-child(3) { border-color: var(--lavender); }
+  .tip-item:nth-child(4) { border-color: var(--peach); }
+  .tip-item:nth-child(5) { border-color: #C8A87A; }
+  .tip-item:nth-child(6) { border-color: #A8C8D8; }
+  .tip-item:hover { transform: translateX(4px); box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+  .tip-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700;
+    color: rgba(44,36,22,0.08); line-height: 1; min-width: 36px;
+  }
+  .tip-content h4 { font-weight: 500; font-size: 0.95rem; color: var(--dark); margin-bottom: 6px; }
+  .tip-content p { font-size: 0.85rem; color: var(--mid); line-height: 1.6; }
+
+  /* ROUTINE */
+  .routine-section { background: var(--dark); color: white; }
+  .routine-section .section-title { color: white; }
+  .routine-section .section-sub { color: rgba(255,255,255,0.6); }
+  .routine-section .section-tag { color: var(--peach); }
+  .routine-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; margin-top: 60px; }
+  .routine-step {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 28px;
+    position: relative; transition: background 0.3s;
+  }
+  .routine-step:hover { background: rgba(255,255,255,0.08); }
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 700;
+    color: rgba(255,255,255,0.06);
+    position: absolute; top: 16px; right: 20px;
+  }
+  .step-emoji { font-size: 1.8rem; margin-bottom: 16px; display: block; }
+  .routine-step h4 { color: white; font-size: 0.95rem; font-weight: 500; margin-bottom: 8px; }
+  .routine-step p { color: rgba(255,255,255,0.5); font-size: 0.83rem; line-height: 1.6; }
+
+  /* SELF CARE */
+  .self-care { background: linear-gradient(135deg, #F0EAF8, #EAF4EE); }
+  .self-care-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .self-care-list { display: flex; flex-direction: column; gap: 16px; }
+  .self-care-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    background: white; border-radius: 16px; padding: 20px 24px;
+    box-shadow: 0 4px 20px rgba(44,36,22,0.05); transition: transform 0.2s;
+  }
+  .self-care-item:hover { transform: translateX(6px); }
+  .care-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--terracotta); margin-top: 6px; flex-shrink: 0; }
+  .self-care-item p { font-size: 0.92rem; color: var(--mid); line-height: 1.6; }
+  .self-care-item p strong { color: var(--dark); font-weight: 500; }
+  .self-care-visual {
+    background: white; border-radius: 28px; padding: 48px; text-align: center;
+    box-shadow: 0 20px 60px rgba(44,36,22,0.08);
+  }
+  .self-care-visual .big-emoji { font-size: 4rem; margin-bottom: 20px; display: block; }
+  .self-care-visual h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--dark); margin-bottom: 16px; }
+  .self-care-visual p { color: var(--mid); line-height: 1.8; font-size: 0.95rem; }
+
+  /* CONNECTION SECTION */
+  .connection-section { background: var(--terracotta); color: white; }
+  .connection-section .section-tag { color: rgba(255,255,255,0.7); }
+  .connection-section .section-title { color: white; max-width: 700px; }
+  .connection-section .section-sub { color: rgba(255,255,255,0.75); max-width: 620px; }
+  .connection-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 0; }
+  .connection-card {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px; padding: 32px;
+    transition: background 0.3s;
+  }
+  .connection-card:hover { background: rgba(255,255,255,0.18); }
+  .connection-card .icon { font-size: 2rem; margin-bottom: 16px; display: block; }
+  .connection-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: white; margin-bottom: 10px; }
+  .connection-card p { font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.7; }
+
+  /* QUOTES */
+  .quotes-section { background: var(--cream); padding: 100px 48px; }
+  .quotes-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 60px; }
+  .quote-card {
+    background: white; border-radius: 20px; padding: 36px;
+    box-shadow: 0 8px 30px rgba(44,36,22,0.06); position: relative;
+  }
+  .quote-mark {
+    font-family: 'Playfair Display', serif; font-size: 5rem; line-height: 0.5;
+    color: rgba(201,103,74,0.15); position: absolute; top: 20px; left: 24px;
+  }
+  .quote-card blockquote {
+    font-family: 'Playfair Display', serif; font-size: 1.05rem;
+    font-style: italic; color: var(--dark); line-height: 1.7;
+    margin-top: 20px; position: relative; z-index: 1;
+  }
+  .quote-source { margin-top: 20px; font-size: 0.8rem; color: var(--light-text); letter-spacing: 0.04em; }
+
+  /* RESOURCES */
+  .resources-section { background: var(--warm); }
+  .resources-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 60px; }
+  .resource-card {
+    background: white; border-radius: 20px; padding: 32px;
+    display: flex; flex-direction: column; transition: all 0.3s;
+  }
+  .resource-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(44,36,22,0.1); }
+  .resource-tag {
+    display: inline-block; padding: 4px 12px; border-radius: 20px;
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; margin-bottom: 16px; width: fit-content;
+  }
+  .tag-orange { background: rgba(232,168,124,0.2); color: var(--terracotta); }
+  .tag-green  { background: rgba(122,158,126,0.2); color: var(--sage); }
+  .tag-purple { background: rgba(197,184,214,0.4); color: #7B6898; }
+  .resource-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--dark); margin-bottom: 10px; }
+  .resource-card p { font-size: 0.87rem; color: var(--mid); line-height: 1.7; flex: 1; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark); color: white; padding: 60px 48px;
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px;
+  }
+  .footer-brand .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--peach); margin-bottom: 16px; }
+  .footer-brand p { color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.7; }
+  footer h4 { color: white; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
+  footer ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  footer ul a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.88rem; transition: color 0.3s; }
+  footer ul a:hover { color: var(--peach); }
+  .footer-bottom {
+    background: var(--dark); padding: 20px 48px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    text-align: center; color: rgba(255,255,255,0.3); font-size: 0.8rem;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float  { 0%,100%{transform:rotate(-3deg) translateY(0)} 50%{transform:rotate(-3deg) translateY(-8px)} }
+  @keyframes float2 { 0%,100%{transform:rotate(2deg)  translateY(0)} 50%{transform:rotate(2deg)  translateY(-6px)} }
+  .hero-text    { animation: fadeUp 0.9s ease both; }
+  .hero-visual  { animation: fadeUp 0.9s ease 0.2s both; }
+  .hero-card-1  { animation: float  6s ease-in-out infinite; }
+  .hero-card-2  { animation: float2 7s ease-in-out infinite; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
+    .hero-visual { display: none; }
+    section { padding: 70px 24px; }
+    .autism-grid,.tips-grid,.resources-grid,.quotes-grid,.connection-grid { grid-template-columns: 1fr; }
+    .tips-header,.self-care-grid { grid-template-columns: 1fr; gap: 20px; }
+    .routine-grid { grid-template-columns: 1fr 1fr; }
+    footer { grid-template-columns: 1fr; gap: 40px; padding: 48px 24px; }
+    .footer-bottom { padding: 16px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">🌸 Bloom Together</div>
+  <ul class="nav-links">
+    <li><a href="#autism">Understanding</a></li>
+    <li><a href="#tips">Daily Tips</a></li>
+    <li><a href="#routine">Routine</a></li>
+    <li><a href="#you">You Matter Too</a></li>
+    <li><a href="#connection">Our Story</a></li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <span class="hero-tag">🌱 A space made just for you</span>
+    <h1>Your journey is <em>unique.</em> You are not alone.</h1>
+    <p>A place of warmth, information and care for mothers who are learning, growing and blooming alongside their autistic children.</p>
+    <a href="#autism" class="hero-cta">Start exploring →</a>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card-stack">
+      <div class="hero-card hero-card-1">
+        <span class="card-emoji">💛</span>
+        <div class="card-title">Every child is unique</div>
+        <div class="card-text">Autism doesn't define limits — it defines a different way of seeing the world.</div>
+      </div>
+      <div class="hero-card hero-card-2">
+        <span class="card-emoji">🌿</span>
+        <div class="card-title">You are growing too</div>
+        <div class="card-text">Every day learning more about your child is an incredible step forward.</div>
+      </div>
+      <div class="hero-card hero-card-3">
+        <span class="card-emoji">✨</span>
+        <div class="card-title">Tip of the day</div>
+        <div class="card-text">Celebrate the small victories. They are the biggest ones.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UNDERSTANDING AUTISM -->
+<section class="autism-section" id="autism">
+  <span class="section-tag">Information with care</span>
+  <h2 class="section-title">Understanding Autism</h2>
+  <p class="section-sub">Autism Spectrum Disorder (ASD) is a neurological condition that affects the way a person communicates, interacts and perceives the world — not a disease to be cured.</p>
+  <div class="autism-grid">
+    <div class="autism-card">
+      <div class="icon icon-orange">🧩</div>
+      <h3>What is ASD?</h3>
+      <p>Autism is a spectrum — every person has their own characteristics, abilities and challenges. There is no "one type" of autism. Each child is unique in their ways of feeling and expressing themselves.</p>
+    </div>
+    <div class="autism-card">
+      <div class="icon icon-green">🗣️</div>
+      <h3>Communication</h3>
+      <p>Some autistic children are verbal, others communicate through alternative means — gestures, pictures, assistive technology. All forms of communication are valid and deserve to be respected.</p>
+    </div>
+    <div class="autism-card">
+      <div class="icon icon-purple">🔁</div>
+      <h3>Routine & predictability</h3>
+      <p>Most autistic children feel safer with predictable routines. Sudden changes can trigger anxiety. Giving advance notice of changes helps a great deal.</p>
+    </div>
+    <div class="autism-card">
+      <div class="icon icon-pink">💫</div>
+      <h3>Sensory processing</h3>
+      <p>Autistic children may have increased or decreased sensitivity to sounds, lights, textures, smells and touch. Understanding your child's sensory triggers is a huge step in daily care.</p>
+    </div>
+    <div class="autism-card">
+      <div class="icon icon-blue">❤️</div>
+      <h3>Affection & connection</h3>
+      <p>Autistic children feel and express love — sometimes in ways different from what is expected. Learn your child's love language. It exists, it is real, and it runs deep.</p>
+    </div>
+    <div class="autism-card">
+      <div class="icon icon-yellow">🌟</div>
+      <h3>Limitless potential</h3>
+      <p>With the right support, autistic children develop incredible abilities. Many have exceptional talents in areas like art, music, mathematics, memory and visual thinking.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DAILY TIPS -->
+<section class="tips-section" id="tips">
+  <div class="tips-header">
+    <div>
+      <span class="section-tag">Everyday life</span>
+      <h2 class="section-title">Practical Tips for Daily Life</h2>
+    </div>
+    <p class="section-sub">Small adjustments to the environment and communication can make an enormous difference in your family's quality of life.</p>
+  </div>
+  <div class="tips-grid">
+    <div class="tip-item">
+      <div class="tip-num">01</div>
+      <div class="tip-content">
+        <h4>Use visual communication</h4>
+        <p>Cards with pictures or emojis help children who struggle with long verbal instructions. Display the daily routine illustrated in a visible spot.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">02</div>
+      <div class="tip-content">
+        <h4>Anticipate transitions</h4>
+        <p>Saying "in 5 minutes we'll stop" before changing activities greatly reduces resistance. Your child needs time to prepare internally.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">03</div>
+      <div class="tip-content">
+        <h4>Create a calm corner</h4>
+        <p>A low-stimulation space at home where your child can go when overwhelmed. It's not a punishment — it's self-regulation.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">04</div>
+      <div class="tip-content">
+        <h4>Celebrate every achievement</h4>
+        <p>Making eye contact, saying "good morning", finishing a meal — these are real victories. Record and celebrate your child's progress without comparing to other children.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">05</div>
+      <div class="tip-content">
+        <h4>Keep routines flexible</h4>
+        <p>Routine yes, but without excessive rigidity. The goal is to provide security, not create more anxiety. If a day goes off-script, that's okay — adapt calmly.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">06</div>
+      <div class="tip-content">
+        <h4>Follow their interests</h4>
+        <p>Your child's intense interests are a gateway to learning, communication and connection. Use what they love as a tool — not as a distraction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROUTINE -->
+<section class="routine-section" id="routine">
+  <span class="section-tag">Structure with lightness</span>
+  <h2 class="section-title">Building a Routine That Works</h2>
+  <p class="section-sub">Routine is the foundation of emotional security for autistic children. It doesn't need to be perfect — it needs to be consistent and loving.</p>
+  <div class="routine-grid">
+    <div class="routine-step">
+      <div class="step-num">1</div>
+      <span class="step-emoji">🌅</span>
+      <h4>Predictable mornings</h4>
+      <p>Always in the same order: wake up, hygiene, breakfast, prepare for the day. Post pictures on the wall with each step. Predictability builds trust.</p>
+    </div>
+    <div class="routine-step">
+      <div class="step-num">2</div>
+      <span class="step-emoji">📚</span>
+      <h4>Learning time</h4>
+      <p>Short sessions are more effective than long ones. 15–20 minutes of focus with a break is much better than a forced hour with no results.</p>
+    </div>
+    <div class="routine-step">
+      <div class="step-num">3</div>
+      <span class="step-emoji">🎨</span>
+      <h4>Favourite activity</h4>
+      <p>Include daily time for what your child loves. This moment is not a "reward" — it is an essential part of well-being and development.</p>
+    </div>
+    <div class="routine-step">
+      <div class="step-num">4</div>
+      <span class="step-emoji">🌙</span>
+      <h4>Evening ritual</h4>
+      <p>Sleep is especially important for autistic children. Create a wind-down ritual: bath, reading, soft music, always at the same time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- YOU MATTER TOO -->
+<section class="self-care" id="you">
+  <div class="self-care-grid">
+    <div>
+      <span class="section-tag">Take care of yourself</span>
+      <h2 class="section-title">You matter too, mama</h2>
+      <p class="section-sub">Caring for an autistic child is intense, beautiful and exhausting all at once. You cannot pour from an empty cup.</p>
+      <div class="self-care-list">
+        <div class="self-care-item">
+          <div class="care-dot"></div>
+          <p><strong>Ask for help without guilt.</strong> Delegating care doesn't make you a bad mother. It makes you a human one.</p>
+        </div>
+        <div class="self-care-item">
+          <div class="care-dot"></div>
+          <p><strong>Cry when you need to.</strong> Processing difficult emotions is not weakness — it's necessary to keep going strong.</p>
+        </div>
+        <div class="self-care-item">
+          <div class="care-dot"></div>
+          <p><strong>Build your support network.</strong> Other mothers living the same journey understand like no one else. Online and in-person groups make a real difference.</p>
+        </div>
+        <div class="self-care-item">
+          <div class="care-dot"></div>
+          <p><strong>Do something just for you.</strong> A walk, a long shower, a chat with a friend. These moments recharge you to keep going.</p>
+        </div>
+        <div class="self-care-item">
+          <div class="care-dot"></div>
+          <p><strong>Celebrate your own progress.</strong> You learned, you grew, you persisted. That deserves recognition — especially from yourself.</p>
+        </div>
+      </div>
+    </div>
+    <div class="self-care-visual">
+      <span class="big-emoji">🌸</span>
+      <h3>"You are the greatest gift your child has."</h3>
+      <p>Not the perfect therapist, not the mother who never makes mistakes — you. With your flaws, your love, your presence. That is what matters most.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OUR CONNECTION STORY -->
+<section class="connection-section" id="connection">
+  <span class="section-tag">How this was born</span>
+  <h2 class="section-title">This website was created with your children in mind</h2>
+  <p class="section-sub">This project was born from a graphic design extension course, where we ran digital art workshops for autistic children at Midpoint Library. While teaching those kids about colour, shapes and creativity, we realised their mothers needed a space too — a place to find information, feel supported and know they are not alone. This website is for you.</p>
+  <div class="connection-grid">
+    <div class="connection-card">
+      <span class="icon">🎨</span>
+      <h3>We taught their children</h3>
+      <p>Four digital art workshops at Midpoint Library — colours, shapes, free painting and a final exhibition. Every child created something beautiful and uniquely their own.</p>
+    </div>
+    <div class="connection-card">
+      <span class="icon">👩‍👧</span>
+      <h3>We thought of you</h3>
+      <p>Watching these children blossom reminded us how much their mothers do every single day. This website is our way of saying: your work is seen, and it matters.</p>
+    </div>
+    <div class="connection-card">
+      <span class="icon">🌱</span>
+      <h3>Design as inclusion</h3>
+      <p>We used graphic design to create a visual, welcoming and accessible experience — because good design should be for everyone, including families who need it most.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTES -->
+<section class="quotes-section">
+  <span class="section-tag">Words that hold you</span>
+  <h2 class="section-title">For the hard days</h2>
+  <div class="quotes-grid">
+    <div class="quote-card">
+      <div class="quote-mark">"</div>
+      <blockquote>Different does not mean less. It means unique, and unique is extraordinary.</blockquote>
+      <div class="quote-source">— On the autism spectrum</div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-mark">"</div>
+      <blockquote>You don't need to understand everything right now. You just need to be present. And you are.</blockquote>
+      <div class="quote-source">— For mothers who demand too much of themselves</div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-mark">"</div>
+      <blockquote>Every small step forward is a giant leap. You just need to learn to measure differently.</blockquote>
+      <div class="quote-source">— On celebrating victories</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section class="resources-section" id="resources">
+  <span class="section-tag">Go deeper</span>
+  <h2 class="section-title">Resources & Support</h2>
+  <p class="section-sub">Quality information makes all the difference. Here are trusted resources to support you and your child.</p>
+  <div class="resources-grid">
+    <div class="resource-card">
+      <span class="resource-tag tag-orange">Official support</span>
+      <h3>Autism Society of America</h3>
+      <p>A national reference for information, rights and support for families of autistic people. Offers legal guidance and psychosocial support across the country.</p>
+    </div>
+    <div class="resource-card">
+      <span class="resource-tag tag-green">Health</span>
+      <h3>Early Intervention Services</h3>
+      <p>Early intervention programmes offer speech therapy, occupational therapy and behavioural support. The earlier the support starts, the greater the impact on development.</p>
+    </div>
+    <div class="resource-card">
+      <span class="resource-tag tag-purple">Education</span>
+      <h3>Right to Inclusive Education</h3>
+      <p>Every autistic child has the right to enrol in a regular school with appropriate support. Know your child's rights and advocate for an Individual Education Plan (IEP).</p>
+    </div>
+    <div class="resource-card">
+      <span class="resource-tag tag-orange">Community</span>
+      <h3>Autism Parent Support Groups</h3>
+      <p>There are hundreds of groups on Facebook, WhatsApp and Instagram formed by parents who share the same journey. Real experience exchange that no book can teach.</p>
+    </div>
+    <div class="resource-card">
+      <span class="resource-tag tag-green">Reading</span>
+      <h3>Recommended books</h3>
+      <p>"The Autistic Brain" by Temple Grandin, "NeuroTribes" by Steve Silberman and "Uniquely Human" by Barry Prizant are reads that genuinely transform perspectives.</p>
+    </div>
+    <div class="resource-card">
+      <span class="resource-tag tag-purple">Online</span>
+      <h3>Autism Speaks & ASAN</h3>
+      <p>Two key online platforms: Autism Speaks for family resources, and the Autistic Self Advocacy Network (ASAN) for perspectives from autistic people themselves.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="logo">🌸 Bloom Together</div>
+    <p>A university extension project from the Graphic Design programme — Faculdade Pitágoras. Created with love to support mothers of autistic children at Midpoint Library and in the wider community.</p>
+  </div>
+  <div>
+    <h4>Navigate</h4>
+    <ul>
+      <li><a href="#autism">Understanding Autism</a></li>
+      <li><a href="#tips">Daily Tips</a></li>
+      <li><a href="#routine">Building a Routine</a></li>
+      <li><a href="#you">You Matter Too</a></li>
+      <li><a href="#connection">Our Story</a></li>
+      <li><a href="#resources">Resources</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Remember</h4>
+    <ul>
+      <li><a href="#">You are not alone</a></li>
+      <li><a href="#">Every day counts</a></li>
+      <li><a href="#">Your child loves you</a></li>
+      <li><a href="#">It's okay to ask for help</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  Made with 💛 · Extension Project · Graphic Design · Pitágoras · Midpoint Library
+</div>
+
+</body>
+</html>
